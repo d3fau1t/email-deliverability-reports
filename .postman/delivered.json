@@ -1,0 +1,165 @@
+{
+    "info": {
+        "name": "Delivered Email Service",
+        "_postman_id": "delivered-service-id",
+        "description": "Postman collection to test the Delivered email microservice",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Send Email",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"to\": [\n        \"recipient@example.com\"\n    ],\n    \"name\": \"Recipient Name\",\n    \"subject\": \"Test Email Subject\",\n    \"body\": \"This is a test email body.\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8000/api/send-email",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "api",
+                        "send-email"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Check Email Status",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8000/api/email-status?to=recipient@example.com",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "api",
+                        "email-status"
+                    ],
+                    "query": [
+                        {
+                            "key": "to",
+                            "value": "recipient@example.com"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Email Failed Webhook",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"event-data\": {\n        \"recipient\": \"recipient@example.com\",\n        \"message\": {\n            \"headers\": {\n                \"subject\": \"Test Email Subject\"\n            }\n        },\n        \"reason\": \"bounced\"\n    }\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8000/api/webhook/email-failed",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "api",
+                        "webhook",
+                        "email-failed"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Email Delivered Webhook",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"event-data\": {\n        \"recipient\": \"recipient@example.com\"\n    }\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8000/api/webhook/email-delivered",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "api",
+                        "webhook",
+                        "email-delivered"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Email Complained Webhook",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"event-data\": {\n        \"recipient\": \"recipient@example.com\"\n    }\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8000/api/webhook/email-complained",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "api",
+                        "webhook",
+                        "email-complained"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
