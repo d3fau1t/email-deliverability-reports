@@ -8,7 +8,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <!-- Search Box -->
                 <div>
-                    <input type="text" name="search" class="w-full p-2 border border-gray-300 rounded" placeholder="Search by recipient or subject" value="{{ old('search', request('search')) }}">
+                    <input type="text" name="search" class="w-full p-2 border border-gray-300 rounded" placeholder="Search" value="{{ old('search', request('search')) }}">
                 </div>
 
                 <!-- Status Filter -->
@@ -69,7 +69,7 @@
                     <!-- Checkbox to Show Sender Domain Column -->
                     <div class="flex items-center">
                         <input class="mr-2" type="checkbox" id="showSenderDomain" name="show_sender_domain" {{ request('show_sender_domain') ? 'checked' : '' }} onchange="this.form.submit()">
-                        <label for="showSenderDomain">Mailgun Domain</label>
+                        <label for="showSenderDomain">Domain</label>
                     </div>
                 </div>
 
